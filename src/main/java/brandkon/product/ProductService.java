@@ -31,7 +31,7 @@ public class ProductService {
                 .map(product -> new ProductResponse(
                         product.getId(),
                         product.getBrand().getName(),
-                        product.getProductName(),
+                        product.getName(),
                         product.getPrice(),
                         product.getImageUrl())).toList();
     }
@@ -43,7 +43,7 @@ public class ProductService {
 
         return new ProductDetailResponse(
                 product.getId(),
-                product.getProductName(),
+                product.getName(),
                 product.getPrice(),
                 new BrandForDetailResponse(brand.getId(), brand.getName(), brand.getGuidelines()),
                 product.getExpirationDays());
