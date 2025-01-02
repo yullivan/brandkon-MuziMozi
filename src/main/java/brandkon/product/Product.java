@@ -11,14 +11,17 @@ public class Product {
     private Long id;
     @ManyToOne
     private Brand brand;
-    private String productName;
+    private String name;
     private int price;
     private String imageUrl;
     private int expirationDays;
 
-    public Product(Brand brand, String productName, int price, String imageUrl, int expirationDays) {
+    public Product() {
+    }
+
+    public Product(Brand brand, String name, int price, String imageUrl, int expirationDays) {
         this.brand = brand;
-        this.productName = productName;
+        this.name = name;
         this.price = price;
         this.imageUrl = imageUrl;
         this.expirationDays = expirationDays;
@@ -40,12 +43,12 @@ public class Product {
         this.brand = brand;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getPrice() {
