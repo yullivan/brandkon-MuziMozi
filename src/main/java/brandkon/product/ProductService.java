@@ -2,6 +2,8 @@ package brandkon.product;
 
 import brandkon.brand.Brand;
 import brandkon.brand.BrandRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,7 +54,8 @@ public class ProductService {
     public List<ProductResponse> getPopular(Long categoryId, Long brandId) {
 
         if (brandId == null) {
-            return mappingProductToResponse(productRepository.findTop5ByBrand_Category_IdOrderBySalesDesc(categoryId));
+            Pageable pageable = PageRequest.of(0, 5); // 상위 5개 상품만 가져옴
+            return mappingProductToResponse(productRepository.findTop5ByCategoryIdOrderBySalesDesc(categoryId, pageable));
         }
         return mappingProductToResponse(productRepository.findTop5ByBrand_IdOrderBySalesDesc(brandId));
     }
