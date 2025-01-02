@@ -48,4 +48,12 @@ public class ProductService {
                 new BrandForDetailResponse(brand.getId(), brand.getName(), brand.getGuidelines()),
                 product.getExpirationDays());
     }
+
+    public List<ProductResponse> getPopular(Long categoryId, Long brandId) {
+
+        if (brandId == null) {
+            return mappingProductToResponse(productRepository.findTop5ByBrand_Category_IdOrderBySalesDesc(categoryId));
+        }
+        return mappingProductToResponse(productRepository.findTop5ByBrand_IdOrderBySalesDesc(brandId));
+    }
 }

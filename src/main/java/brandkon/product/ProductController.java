@@ -25,4 +25,11 @@ public class ProductController {
     public ProductDetailResponse readProduct(@PathVariable Long productId) {
         return productService.get(productId);
     }
+
+    @GetMapping("/products/popular")
+    public List<ProductResponse> readPopularProducts(
+            @RequestParam(required = false) Long categoryId,
+            @RequestParam(required = false) Long brandId) {
+        return productService.getPopular(categoryId, brandId);
+    }
 }
