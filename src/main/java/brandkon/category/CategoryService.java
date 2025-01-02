@@ -13,6 +13,12 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
+    public CategoryResponse saveCategory(CategoryRequest request) {
+
+        Category category = categoryRepository.save(new Category(request.name(), request.slug(), request.imageUrl()));
+        return new CategoryResponse(category.getId(), category.getName(), category.getSlug(), category.getImageUrl());
+    }
+
     public List<CategoryResponse> getCategory() {
 
         return categoryRepository.findAll()
