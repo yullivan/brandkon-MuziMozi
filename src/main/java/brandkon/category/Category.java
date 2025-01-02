@@ -15,6 +15,9 @@ public class Category {
     private String slug;
     private String imageUrl;
 
+    public Category() {
+    }
+
     public Category(String name, String slug, String imageUrl) {
         this.name = name;
         this.slug = slug;
