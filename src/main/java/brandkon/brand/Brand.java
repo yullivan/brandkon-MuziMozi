@@ -11,15 +11,17 @@ public class Brand {
     private Long id;
     private String name;
     private String imageUrl;
+    private String guidelines;
     @ManyToOne
     private Category category;
 
     public Brand() {
     }
 
-    public Brand(String name, String imageUrl, Category category) {
+    public Brand(String name, String imageUrl, String guidelines, Category category) {
         this.name = name;
         this.imageUrl = imageUrl;
+        this.guidelines = guidelines;
         this.category = category;
     }
 
@@ -45,6 +47,14 @@ public class Brand {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getGuidelines() {
+        return guidelines;
+    }
+
+    public void setGuidelines(String guidelines) {
+        this.guidelines = guidelines;
     }
 
     public Category getCategory() {
