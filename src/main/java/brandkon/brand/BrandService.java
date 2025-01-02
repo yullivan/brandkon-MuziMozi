@@ -1,5 +1,7 @@
 package brandkon.brand;
 
+import brandkon.category.Category;
+import brandkon.category.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,14 +10,17 @@ import java.util.List;
 public class BrandService {
 
     private BrandRepository brandRepository;
+    private CategoryRepository categoryRepository;
 
-    public BrandService(BrandRepository brandRepository) {
+    public BrandService(BrandRepository brandRepository, CategoryRepository categoryRepository) {
         this.brandRepository = brandRepository;
+        this.categoryRepository = categoryRepository;
     }
 
-    public List<BrandResponse> getBrandsByCategory(String category) {
+    public List<BrandResponse> getBrandsByCategory(String slug) {
 
-        return brandRepository.findALLByCategory(category)
+        Category category = categoryRepository.findBySlug(slug);
+        return brandRepository.findALLByCategoryId(category.getId())
                 .stream()
                 .map(brand -> new BrandResponse(
                         brand.getId(),
