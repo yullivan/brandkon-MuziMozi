@@ -16,17 +16,13 @@ public class Brand {
     private String imageUrl;
     private String guidelines;
 
-    @ManyToMany(mappedBy = "brands")
-    private Set<Category> categories = new HashSet<>();
-
     public Brand() {
     }
 
-    public Brand(String name, String imageUrl, String guidelines, Set<Category> categories) {
+    public Brand(String name, String imageUrl, String guidelines) {
         this.name = name;
         this.imageUrl = imageUrl;
         this.guidelines = guidelines;
-        this.categories = categories;
     }
 
     public Long getId() {
@@ -59,13 +55,5 @@ public class Brand {
 
     public void setGuidelines(String guidelines) {
         this.guidelines = guidelines;
-    }
-
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
     }
 }
