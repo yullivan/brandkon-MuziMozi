@@ -1,9 +1,10 @@
 package brandkon.category;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import brandkon.brand.Brand;
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Category {
@@ -15,13 +16,22 @@ public class Category {
     private String slug;
     private String imageUrl;
 
+    @ManyToMany
+    @JoinTable(
+            name = "category_brand", // 중간 테이블 이름
+            joinColumns = @JoinColumn(name = "category_id"), // 카테고리 쪽 외래키
+            inverseJoinColumns = @JoinColumn(name = "brand_id") // 브랜드 쪽 외래키
+    )
+    private Set<Brand> brands = new HashSet<>();
+
     public Category() {
     }
 
-    public Category(String name, String slug, String imageUrl) {
+    public Category(String name, String slug, String imageUrl, Set<Brand> brands) {
         this.name = name;
         this.slug = slug;
         this.imageUrl = imageUrl;
+        this.brands = brands;
     }
 
     public Long getId() {
@@ -54,5 +64,13 @@ public class Category {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Set<Brand> getBrands() {
+        return brands;
+    }
+
+    public void setBrands(Set<Brand> brands) {
+        this.brands = brands;
     }
 }

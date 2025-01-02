@@ -3,6 +3,9 @@ package brandkon.brand;
 import brandkon.category.Category;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 public class Brand {
 
@@ -12,17 +15,18 @@ public class Brand {
     private String name;
     private String imageUrl;
     private String guidelines;
-    @ManyToOne
-    private Category category;
+
+    @ManyToMany(mappedBy = "brands")
+    private Set<Category> categories = new HashSet<>();
 
     public Brand() {
     }
 
-    public Brand(String name, String imageUrl, String guidelines, Category category) {
+    public Brand(String name, String imageUrl, String guidelines, Set<Category> categories) {
         this.name = name;
         this.imageUrl = imageUrl;
         this.guidelines = guidelines;
-        this.category = category;
+        this.categories = categories;
     }
 
     public Long getId() {
@@ -57,11 +61,11 @@ public class Brand {
         this.guidelines = guidelines;
     }
 
-    public Category getCategory() {
-        return category;
+    public Set<Category> getCategories() {
+        return categories;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
