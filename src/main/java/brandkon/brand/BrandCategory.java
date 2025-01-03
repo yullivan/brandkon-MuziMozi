@@ -4,7 +4,7 @@ import brandkon.category.Category;
 import jakarta.persistence.*;
 
 @Entity
-public class CategoryBrand {
+public class BrandCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +18,10 @@ public class CategoryBrand {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    public CategoryBrand() {
+    public BrandCategory() {
     }
 
-    public CategoryBrand(Category category, Brand brand) {
+    public BrandCategory(Category category, Brand brand) {
         this.category = category;
         this.brand = brand;
     }

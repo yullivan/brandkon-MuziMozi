@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface CategoryBrandRepository extends JpaRepository<CategoryBrand, Long> {
+public interface BrandCategoryRepository extends JpaRepository<BrandCategory, Long> {
 
     @Query("SELECT cb.brand FROM CategoryBrand cb WHERE cb.category.id = :categoryId")
     List<Brand> findBrandsByCategoryId(@Param("categoryId") Long categoryId);

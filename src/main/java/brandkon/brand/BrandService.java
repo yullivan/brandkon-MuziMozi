@@ -11,18 +11,18 @@ public class BrandService {
 
     private BrandRepository brandRepository;
     private CategoryRepository categoryRepository;
-    private CategoryBrandRepository categoryBrandRepository;
+    private BrandCategoryRepository brandCategoryRepository;
 
-    public BrandService(BrandRepository brandRepository, CategoryRepository categoryRepository, CategoryBrandRepository categoryBrandRepository) {
+    public BrandService(BrandRepository brandRepository, CategoryRepository categoryRepository, BrandCategoryRepository brandCategoryRepository) {
         this.brandRepository = brandRepository;
         this.categoryRepository = categoryRepository;
-        this.categoryBrandRepository = categoryBrandRepository;
+        this.brandCategoryRepository = brandCategoryRepository;
     }
 
     public List<BrandResponse> getBrandsByCategory(String slug) {
 
         Category category = categoryRepository.findBySlug(slug);
-        return categoryBrandRepository.findBrandsByCategoryId(category.getId())
+        return brandCategoryRepository.findBrandsByCategoryId(category.getId())
                 .stream()
                 .map(brand -> new BrandResponse(
                         brand.getId(),
